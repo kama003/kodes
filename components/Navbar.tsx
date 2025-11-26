@@ -26,7 +26,25 @@ export const Navbar = () => {
     }
   }, [isOpen]);
 
-  const navLinks = ["Work", "Services", "About", "Insights"];
+  const navLinks = ["Work", "Services", "About", "Team", "Insights"];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: string) => {
+    e.preventDefault();
+    const targetId = item.toLowerCase();
+    const element = document.getElementById(targetId);
+
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+      // Update URL without triggering navigation
+      window.history.pushState(null, '', `#${targetId}`);
+    }
+
+    // Close mobile menu if open
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -36,8 +54,8 @@ export const Navbar = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 border-b transition-all duration-300",
-          isOpen 
-            ? "bg-white dark:bg-neutral-950 border-transparent" 
+          isOpen
+            ? "bg-white dark:bg-neutral-950 border-transparent"
             : scrolled
               ? "bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md border-neutral-200/50 dark:border-white/10"
               : "bg-transparent border-transparent"
@@ -58,6 +76,7 @@ export const Navbar = () => {
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
+              onClick={(e) => handleNavClick(e, item)}
               className="text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
             >
               {item}
@@ -104,13 +123,13 @@ export const Navbar = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + i * 0.1, duration: 0.4 }}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleNavClick(e, item)}
                   className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white hover:text-neutral-500 transition-colors"
                 >
                   {item}
                 </motion.a>
               ))}
-              
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
