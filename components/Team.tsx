@@ -6,7 +6,7 @@ const team = [
     {
         name: "Kamal",
         role: "Co-Founder & Lead Engineer",
-        image: "../img/kamal.png",
+        image: "https://s6.imgcdn.dev/YKJfpT.png",
         bio: "Architecting scalable systems and turning complex problems into elegant code. Kamal leads the technical vision at Kodes.",
         social: {
             twitter: "#",
@@ -18,7 +18,7 @@ const team = [
     {
         name: "Himanshi",
         role: "Co-Founder & Creative Director",
-        image: "../img/himanshi.png",
+        image: "https://s6.imgcdn.dev/YKJVVt.png",
         bio: "Designing intuitive experiences and defining the visual language of digital products. Himanshi brings brands to life.",
         social: {
             twitter: "#",
